@@ -2,6 +2,7 @@ package com.example.weatherapp.data;
 
 import org.json.JSONObject;
 
+//JSON Parser for Atmosphere data
 public class Atmosphere implements JSON {
     private String humidity;
     private String pressure;

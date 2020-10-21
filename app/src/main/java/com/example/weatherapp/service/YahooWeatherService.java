@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Objects;
 
 public class YahooWeatherService {
 
@@ -31,13 +32,14 @@ public class YahooWeatherService {
     public void refreshWeather(final String l) {
         this.location = l;
 
-        new AsyncTask<String, Void, String>() {
+
+        new  AsyncTask<String, Void, String> () {
 
             @Override
-            protected String doInBackground(String... strings) {
+            protected String doInBackground (String...strings){
 
                 String YQL = String.format("select * from weather.forecast where woeid" +
-                        " in (select woeid from geo.places(1) where text=\"%s\") and u='c'",
+                                " in (select woeid from geo.places(1) where text=\"%s\") and u='c'",
                         strings[0]);
                 String endpoint = String.format(
                         "https://query.yahooapis.com/v1/public/yql?q=%s&format=json",
@@ -61,7 +63,7 @@ public class YahooWeatherService {
             }
 
             @Override
-            protected void onPostExecute(String s) {
+            protected void onPostExecute (String s){
 
                 if (s == null && error != null) {
                     callback.serviceFailure(error);
@@ -80,7 +82,7 @@ public class YahooWeatherService {
                     }
 
                     Channel channel = new Channel();
-                    channel.json(queryResults.optJSONObject("results").optJSONObject("channel"));
+                    channel.json(Objects.requireNonNull(queryResults.optJSONObject("results").optJSONObject("channel")));
 
                     callback.serviceSuccess(channel);
                 } catch (JSONException e) {

@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="#480082"
     tools:context=".MainActivity"
     android:screenOrientation="locked"
     android:orientation="vertical"
     android:uiOptions="splitActionBarWhenNarrow">
 
+    <!-- Weather Icon -->
     <ImageView
         android:id="@+id/WeatherIcon"
         android:layout_width="181dp"
@@ -23,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="16dp" />
 
-
+    <!-- Changing city Button -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -46,6 +47,7 @@
         app:layout_constraintVertical_bias="0.685"
         android:layout_marginRight="8dp" />
 
+    <!-- Your location -->
     <TextView
         android:id="@+id/cityText"
         android:layout_width="202dp"
@@ -62,7 +64,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="start" />
 
-
+    <!-- Temperature -->
     <TextView
         android:id="@+id/tempText"
         android:layout_width="128dp"
@@ -101,6 +103,7 @@
         android:layout_marginLeft="48dp"
         android:gravity="end" />
 
+    <!-- Wind speed -->
     <TextView
         android:id="@+id/windText"
         android:layout_width="157dp"
@@ -123,6 +126,7 @@
         android:layout_marginLeft="8dp"
         android:gravity="end" />
 
+    <!-- Pressure -->
     <TextView
         android:id="@+id/pressureText"
         android:layout_width="205dp"
@@ -141,6 +145,7 @@
         android:layout_marginRight="8dp"
         android:gravity="start" />
 
+    <!-- Humidity -->
     <TextView
         android:id="@+id/humidText"
         android:layout_width="119dp"
@@ -162,6 +167,7 @@
         android:layout_marginLeft="8dp"
         android:gravity="end" />
 
+    <!-- Dawn time -->
     <TextView
         android:id="@+id/riseText"
         android:layout_width="152dp"
@@ -176,6 +182,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tempText"
         android:gravity="start" />
 
+    <!-- Sunset time -->
     <TextView
         android:id="@+id/setText"
         android:layout_width="150dp"
@@ -196,6 +203,7 @@
         android:layout_marginRight="8dp"
         android:gravity="start" />
 
+    <!-- Last weather update -->
     <TextView
         android:id="@+id/updateText"
         android:layout_width="183dp"
@@ -216,7 +224,7 @@
         app:layout_constraintVertical_bias="0.666"
         android:gravity="end" />
 
-
+    <!-- Don't touch! -->
     <EditText
         android:id="@+id/editText"
         android:layout_width="381dp"

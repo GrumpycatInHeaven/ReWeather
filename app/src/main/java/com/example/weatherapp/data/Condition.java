@@ -2,6 +2,7 @@ package com.example.weatherapp.data;
 
 import org.json.JSONObject;
 
+//JSON Parser for Condition data
 public class Condition implements JSON {
 
     private String date;

@@ -2,6 +2,7 @@ package com.example.weatherapp.data;
 
 import org.json.JSONObject;
 
+//JSON Parser for Astronomy data
 public class Astronomy implements JSON {
 
 

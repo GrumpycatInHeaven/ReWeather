@@ -1,6 +1,10 @@
 package com.example.weatherapp.data;
 
 import org.json.JSONObject;
+
+import java.util.Objects;
+
+//JSON Parser for Item data
 public class Item implements JSON {
 
     public Condition getCondition() {
@@ -12,7 +16,7 @@ public class Item implements JSON {
     @Override
     public void json(JSONObject data) {
         condition = new Condition();
-        condition.json(data.optJSONObject("condition"));
+        condition.json(Objects.requireNonNull(data.optJSONObject("condition")));
 
 
     }

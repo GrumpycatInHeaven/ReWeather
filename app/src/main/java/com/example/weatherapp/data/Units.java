@@ -2,6 +2,7 @@ package com.example.weatherapp.data;
 
 import org.json.JSONObject;
 
+//JSON Parser for Units data
 public class Units implements JSON {
     private  String date;
     private String speed;

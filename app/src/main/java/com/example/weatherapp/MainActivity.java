@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
         service = new YahooWeatherService(this);
         service.refreshWeather("Sochi, RU");
 
-
     }
 
     @Override
@@ -75,23 +74,23 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
         int resourceId = getResources().getIdentifier("drawable/icon_" + item.getCondition().
                 getCode(), null, getPackageName());
 
-        @SuppressWarnings("deprecation")
+        // Get weather status and find corresponding icon
         Drawable iconWeatherDrawable = getResources().getDrawable(resourceId);
 
+        // Setting image
         iconWeather.setImageDrawable(iconWeatherDrawable);
 
         String s = String.valueOf(item.getCondition().getDescription());
 
-//        AlarmManager manager = (AlarmManager)getSystemService(
-//                Context.ALARM_SERVICE);
-
+        // If it's cloudy now you will receive a notification
         if (s.equals("Cloudy")) {
 
 
             Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-//
-//            manager.setInexactRepeating();
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                    0, intent, 0);
+
+            // Description of notification
             Notification.Builder builder = new Notification.Builder(this)
                     .setTicker("Прогноз!")
                     .setContentTitle("(∩` ﾛ ´)⊃━炎炎炎炎炎 ")
@@ -112,10 +111,11 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
             notificationManager.notify(1, notification);
         }
 
-
+        // It's and next like a previous instead title, icon and text of notification
         if (s.equals("Mostly Cloudy")) {
             Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                    0, intent, 0);
 
             Notification.Builder builder = new Notification.Builder(this)
                     .setTicker("Прогноз!")
@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
 
         if (s.equals("Thunderstorms")) {
             Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                    0, intent, 0);
 
             Notification.Builder builder = new Notification.Builder(this)
                     .setTicker("Прогноз!")
@@ -155,7 +156,8 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
                             pendingIntent).setAutoCancel(true);
 
             String bigText = "Сегодня грозы, следует"
-                    + " держаться сухим и держаться подальше от открытой местности, воды, металлических предеметов, а также очень опасно разоваривать по телефону └(- -)┐";
+                    + " держаться сухим и держаться подальше от открытой местности, воды, " +
+                    "металлических предеметов, а также очень опасно разоваривать по телефону └(- -)┐";
 
             Notification notification = new Notification.BigTextStyle(builder)
                     .bigText(bigText).build();
@@ -168,27 +170,40 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
 
         if (s.equals("Tornado")) {
             Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                    0, intent, 0);
 
             Notification.Builder builder = new Notification.Builder(this)
                     .setWhen(System.currentTimeMillis())
                     .setTicker("Прогноз!")
                     .setContentTitle("(╯°□°)╯︵ ┻━┻")
                     .setContentText("Надевайте все, что хотите, но для начала:" +
-                            "1. Плотно закройте двери, окна, балконную дверь, форточку и вентиляционные отверстия. Если есть время – укрепите крышу, освободите балкон он пожароопасных предметов.\n" +
+                            "1. Плотно закройте двери, окна, балконную дверь, " +
+                            "форточку и вентиляционные отверстия. Если есть время – укрепите крышу," +
+                            " освободите балкон он пожароопасных предметов.\n" +
                             "2. Отключите электробытовые приборы, газ.\n" +
-                            "3. Если у вас в доме есть подвал или погреб: возьмите с собой необходимые вещи (документы, воду, фонарик, медикаменты) и укройтесь там.\n" +
-                            "4. Если у вас нет подвала, оставайтесь в доме, желательно - во внутренних комнатах или в ванной. Не приближайтесь к окнам, относительно безлопастные места –  дверной проем, коридор, кладовка. \n ")
+                            "3. Если у вас в доме есть подвал или погреб: " +
+                            "возьмите с собой необходимые вещи " +
+                            "(документы, воду, фонарик, медикаменты) и укройтесь там.\n" +
+                            "4. Если у вас нет подвала, оставайтесь в доме, " +
+                            "желательно - во внутренних комнатах или в ванной. " +
+                            "Не приближайтесь к окнам, относительно безлопастные места – " +
+                            "дверной проем, коридор, кладовка. \n ")
                     .setSmallIcon(R.drawable.icon_0)
                     .setDefaults(Notification.DEFAULT_VIBRATE)
                     .addAction(R.drawable.icon_0, "Запустить активность",
                             pendingIntent).setAutoCancel(true);
 
             String bigText = "Надевайте все, что хотите, но для начала:" +
-                    "1. Плотно закройте двери, окна, балконную дверь, форточку и вентиляционные отверстия. Если есть время – укрепите крышу, освободите балкон он пожароопасных предметов.\n" +
+                    "1. Плотно закройте двери, окна, балконную дверь, форточку и вентиляционные " +
+                    "отверстия. Если есть время – укрепите крышу, " +
+                    "освободите балкон он пожароопасных предметов.\n" +
                     "2. Отключите электробытовые приборы, газ.\n" +
-                    "3. Если у вас в доме есть подвал или погреб: возьмите с собой необходимые вещи (документы, воду, фонарик, медикаменты) и укройтесь там.\n" +
-                    "4. Если у вас нет подвала, оставайтесь в доме, желательно - во внутренних комнатах или в ванной. Не приближайтесь к окнам, относительно безлопастные места –  дверной проем, коридор, кладовка. \n ";
+                    "3. Если у вас в доме есть подвал или погреб: возьмите с собой необходимые " +
+                    "вещи (документы, воду, фонарик, медикаменты) и укройтесь там.\n" +
+                    "4. Если у вас нет подвала, оставайтесь в доме, желательно - во внутренних " +
+                    "комнатах или в ванной. Не приближайтесь к окнам, относительно безлопастные " +
+                    "места –  дверной проем, коридор, кладовка. \n ";
 
             Notification notification = new Notification.BigTextStyle(builder)
                     .bigText(bigText).build();
@@ -200,7 +215,8 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
 
         if (s.equals("Scattered Showers")) {
             Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                    0, intent, 0);
 
             Notification.Builder builder = new Notification.Builder(this)
                     .setWhen(System.currentTimeMillis())
@@ -226,7 +242,8 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
 
         if (s.equals("Showers")) {
             Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                    0, intent, 0);
 
             Notification.Builder builder = new Notification.Builder(this)
                     .setWhen(System.currentTimeMillis())
@@ -252,7 +269,8 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
 
         if (s.equals("Windy")) {
             Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                    0, intent, 0);
 
             Notification.Builder builder = new Notification.Builder(this)
                     .setWhen(System.currentTimeMillis())
@@ -266,7 +284,8 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
                             pendingIntent).setAutoCancel(true);
 
             String bigText = "Сегодня ветренно,"
-                    + " не забудьте взять с собой шарф и шапку. Внимательней смотрите по сторонам ┬┴┬┴┤(･_├┬┴┬┴";
+                    + " не забудьте взять с собой шарф и шапку. " +
+                    "Внимательней смотрите по сторонам ┬┴┬┴┤(･_├┬┴┬┴";
 
             Notification notification = new Notification.BigTextStyle(builder)
                     .bigText(bigText).build();
@@ -278,7 +297,8 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
 
         if (s.equals("Sunny")) {
             Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                     intent, 0);
 
             Notification.Builder builder = new Notification.Builder(this)
                     .setWhen(System.currentTimeMillis())
@@ -292,7 +312,8 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
                             pendingIntent).setAutoCancel(true);
 
             String bigText = "Сегодня солнечно,"
-                    + " рекомендую взять с собой солнечные очки и на всякий случай крем от загара(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧";
+                    + " рекомендую взять с собой солнечные очки и на всякий случай крем от" +
+                    " загара(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧";
 
             Notification notification = new Notification.BigTextStyle(builder)
                     .bigText(bigText).build();
@@ -304,7 +325,8 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
 
         if (s.equals("Blustery")) {
             Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                    0, intent, 0);
 
             Notification.Builder builder = new Notification.Builder(this)
                     .setWhen(System.currentTimeMillis())
@@ -318,7 +340,9 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
                             pendingIntent).setAutoCancel(true);
 
             String bigText = "Сегодня прогнозируется буря,"
-                    + " выходя из дома, не забудьте взять с собой шарф(можно два) и шапку. Внимательней смотрите по сторонам, не находитесь под ненадежными объектами(деревья и т.п.) ┬┴┬┴┤･-･)ﾉ";
+                    + " выходя из дома, не забудьте взять с собой шарф(можно два) и шапку." +
+                    " Внимательней смотрите по сторонам, не находитесь под ненадежными" +
+                    " объектами(деревья и т.п.) ┬┴┬┴┤･-･)ﾉ";
 
             Notification notification = new Notification.BigTextStyle(builder)
                     .bigText(bigText).build();
@@ -327,47 +351,27 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
             notificationManager.notify(9, notification);
         }
 
-//            Intent intent = new Intent(this, MainActivity.class);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-//
-//            NotificationCompat.Builder builder =
-//                    new NotificationCompat.Builder(this)
-//                            .setSmallIcon(R.mipmap.ic_launcher)
-//                            .setContentTitle("(∩` ﾛ ´)⊃━炎炎炎炎炎 ")
-//                            .setContentText("Сегодня ветренно, следует одеться теплее и взять с собой шапку ヽ(”`▽´)ﾉ")
-//                            .addAction(R.mipmap.ic_launcher, "Запустить активность",
-//                            pendingIntent).setAutoCancel(true);
-//
-//            String bigText = "Сегодня ветренно, следует"+" одеться теплее и взять с собой шапку ヽ(”`▽´)ﾉ ";
-//
-//
-//            Notification notification = new Notification.BigTextStyle(builder)
-//                    .bigText(bigText).build();
-//
-//            Notification notification = builder.build();
-//
-//            NotificationManager notificationManager =
-//                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//            notificationManager.notify(1, notification);
-//        }
+        // Setting values of each parameter
+        humidity.setText(String.format("Humidity: %s%%", channel.getAtmosphere().getHumidity()));
+        pressure.setText(String.format("Pressure: %smb", channel.getAtmosphere().getPressure()));
 
-
-        humidity.setText("Humidity: " + channel.getAtmosphere().getHumidity() + "%");
-        pressure.setText("Pressure: " + channel.getAtmosphere().getPressure() + "mb");
-
-        speed.setText("Speed: " + channel.getWind().getSpeed() + " " + channel.getUnits().getSpeed());
-        sunrise.setText("Sunrise: " + channel.getAstronomy().getSunrise());
-        sunset.setText("Sunset: " + channel.getAstronomy().getSunset());
+        speed.setText(String.format("Speed: %d %s", channel.getWind().getSpeed(),
+                channel.getUnits().getSpeed()));
+        sunrise.setText(String.format("Sunrise: %s", channel.getAstronomy().getSunrise()));
+        sunset.setText(String.format("Sunset: %s", channel.getAstronomy().getSunset()));
 
         date.setText(item.getCondition().getDate());
-        temperature.setText(item.getCondition().getTemperature() + "\u00B0" + channel.getUnits().getTemperature());
+        temperature.setText(String.format("%d°%s", item.getCondition().getTemperature(),
+                channel.getUnits().getTemperature()));
         condition.setText(item.getCondition().getDescription());
         location.setText(service.getLocation());
     }
 
+
     @Override
     public void serviceFailure(Exception e) {
         dialog.hide();
+        // Get error's description
         Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
     }
 }

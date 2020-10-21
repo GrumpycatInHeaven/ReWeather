@@ -2,6 +2,7 @@ package com.example.weatherapp.data;
 
 import org.json.JSONObject;
 
+//JSON Parser for Wind data
 public class Wind implements JSON {
 
     private int speed;
